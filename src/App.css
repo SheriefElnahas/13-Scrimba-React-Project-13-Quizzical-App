@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Karla:wght@700&display=swap');
+.App {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+
+}
+
+.App::after {
+  content: "";
+  width: 250px;
+  height: 250px;
+  background: #4fa9c2;
+  position: fixed;
+  top: -50px;
+  right: -100px;
+  transform: skew(53deg);
+}
+
+.App::before {
+  content: "";
+  width: 250px;
+  height: 250px;
+  background: #4fa9c2;
+  position: fixed;
+  bottom: -50px;
+  left: -100px;
+  transform: skew(53deg);
+}

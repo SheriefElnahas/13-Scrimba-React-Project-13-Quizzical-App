@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@700&display=swap");
+
+.StartQuiz {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.StartQuiz h1 {
+  font-size: 31px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: "Karla", sans-serif;
+}
+
+.StartQuiz button {
+  border: none;
+  background: steelblue;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+.StartQuiz button:hover {
+  background: rgb(57, 105, 144);
+}
