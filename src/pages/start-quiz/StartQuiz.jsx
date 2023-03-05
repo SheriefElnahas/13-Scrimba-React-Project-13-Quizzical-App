@@ -2,7 +2,7 @@ import styles from './StartQuiz.module.css';
 
 import { useState } from 'react';
 
-export default function StartQuiz() {
+export default function StartQuiz({ startQuizFunc }) {
   const [userChoices, setUserChoices] = useState({ category: '', amount: '', type: '', difficulty: '' });
 
   function handleChange(event) {
@@ -17,8 +17,7 @@ export default function StartQuiz() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(userChoices);
+    startQuizFunc(userChoices);
   };
 
   return (
