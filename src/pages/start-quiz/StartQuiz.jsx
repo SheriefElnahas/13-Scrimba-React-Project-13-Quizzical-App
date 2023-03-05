@@ -40,9 +40,8 @@ export default function StartQuiz() {
               <option value="" disabled selected>
                 -- Choose A Type --
               </option>
-              <option value="attack-on-titan">Attack On Titan</option>
-              <option value="vinland-saga">Vinland Saga</option>
-              <option value="demon-slayer">Demon Slayer</option>
+              <option value="attack-on-titan">Multiple Choice</option>
+              <option value="vinland-saga">True / False</option>
             </select>
           </p>
           <p>
@@ -51,9 +50,9 @@ export default function StartQuiz() {
               <option value="" disabled selected>
                 -- Choose A Level --
               </option>
-              <option value="attack-on-titan">Attack On Titan</option>
-              <option value="vinland-saga">Vinland Saga</option>
-              <option value="demon-slayer">Demon Slayer</option>
+              <option value="attack-on-titan">Easy</option>
+              <option value="vinland-saga">Medium</option>
+              <option value="demon-slayer">Hard</option>
             </select>
           </p>
         </div>
