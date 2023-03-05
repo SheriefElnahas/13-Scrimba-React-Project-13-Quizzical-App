@@ -3,12 +3,19 @@
 .StartQuiz {
   text-align: center;
   margin-bottom: 3.5rem;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
 }
 .StartQuiz h1 {
   font-size: 31px;
   font-weight: 700;
   letter-spacing: 1px;
-  font-family: "Karla", sans-serif;
+
 }
 
 .StartQuiz button {

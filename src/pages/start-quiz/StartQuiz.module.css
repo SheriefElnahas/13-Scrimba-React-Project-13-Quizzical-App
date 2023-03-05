@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Golos+Text:wght@400;500&display=swap');
+
+.StartQuiz {
+  max-width: 500px;
+  margin: 14rem auto;
+  font-family: 'Golos Text', sans-serif;
+}
+
+.StartQuiz h1 {
+  font-size: 3rem;
+  text-align: center;
+  letter-spacing: 5px;
+  font-family: 'Fjalla One', sans-serif;
+}

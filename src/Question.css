@@ -1,0 +1,37 @@
+.Question {
+    border-bottom:1px solid #DBDEF0 ;
+    width:800px;
+    margin:1rem auto;
+}
+
+.Question button {
+    border-radius: 10px;
+    background: none;
+    padding:0.5rem 1rem;
+    margin-right:1.5rem;
+    margin-bottom:2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size:12px;
+    cursor: pointer;
+    border:2px solid black;
+
+}
+.Question button:hover {
+    background: #D6DBF5;
+    border:2px solid transparent;
+}
+
+.Question h2 {
+    font-size:18px;
+    color:#293264;
+}
+
+.Question .right-answer {
+    background: #D6DBF5;
+    border:2px solid transparent;
+}
+
+.Questions .test {
+    background:teal;
+}
