@@ -1,14 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Golos+Text:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Lato:wght@400;700&display=swap');
 
 .StartQuiz {
-  max-width: 500px;
-  margin: 14rem auto;
-  font-family: 'Golos Text', sans-serif;
+  max-width: 600px;
+  margin: 4rem auto 0 auto;
+  font-family: 'Lato', sans-serif;
+
+  color: #333;
 }
 
 .StartQuiz h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-align: center;
-  letter-spacing: 5px;
+  letter-spacing: 7px;
   font-family: 'Fjalla One', sans-serif;
+  margin-bottom: 0rem;
+}
+
+.StartQuiz > p {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.StartQuiz form {
+  margin-top: 3rem;
+  border: 3px solid #4fa9c2;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+}
+
+.StartQuiz h2 {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.StartQuiz .user-choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 50px;
+}
+
+.StartQuiz form label {
+  padding-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.StartQuiz input,
+.StartQuiz select {
+  margin-top: 5px;
+  width: 90%;
+  padding: 0.2rem;
+  border-radius: 5px;
+  border: 1px solid #ababab;
+}
+
+/* .StartQuiz input::placeholder {
+  padding-left: 0.3rem;
+} */
+
+.StartQuiz input {
+  padding-left: 10px;
+}
+.StartQuiz select {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+}
+.StartQuiz select option {
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+.StartQuiz button {
+  padding: 0.8rem 2.5rem;
+  background: #000;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Golos Text', sans-serif;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 35%;
+  margin-top: 5px;
+  font-weight: bold;
+  transition: all 0.2s linear;
+}
+
+.StartQuiz button:hover {
+  background: teal;
+  color: #fff;
 }

@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Karla:wght@700&display=swap');
 
-h1,h2 {
-  font-family: "Karla", sans-serif;
+h1,
+h2 {
+  font-family: 'Karla', sans-serif;
   font-weight: 700;
 }
+
 .App::after {
-  content: "";
+  content: '';
   width: 250px;
   height: 250px;
   background: #4fa9c2;
@@ -16,7 +18,7 @@ h1,h2 {
 }
 
 .App::before {
-  content: "";
+  content: '';
   width: 250px;
   height: 250px;
   background: #4fa9c2;
@@ -33,21 +35,20 @@ h1,h2 {
   font-weight: bold;
   text-transform: uppercase;
   color: #fff;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
   letter-spacing: 2px;
   margin-top: 5px;
-  border-radius:5px;
+  border-radius: 5px;
 }
 .primary-button:hover {
   background: rgb(53, 106, 150);
 }
 
 .QuizzPage {
-  display:flex;
+  display: flex;
   flex-direction: column;
 
   align-items: center;
-  margin-top:2rem;
+  margin-top: 2rem;
 }
-
