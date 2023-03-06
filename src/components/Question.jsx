@@ -1,9 +1,29 @@
 import './Question.css';
 
-import { Fragment, React, useEffect, useState } from 'react';
+import { Fragment, React, useState } from 'react';
 
-function Question({ question, questionNum }) {
+// Helper Function To Shuffle An Array
+function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
+function Question({ choices, questionNum, questionHeading }) {
   const [formData, setFormData] = useState({ answer: '' });
+
+  // Shuffle The Array Of Choices to change the position of the correct answer from 3th index to a random index
+  shuffle(choices);
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
@@ -22,12 +42,12 @@ function Question({ question, questionNum }) {
   return (
     <article className="Question">
       <h3>
-        {questionNum}. {question.question}
+        {questionNum}. {questionHeading}
       </h3>
       <div className="answers">
         <form onSubmit={handleSubmit}>
           <div className="col-12 pb-5">
-            {question.incorrect_answers.map((choice, index) => {
+            {choices.map((choice, index) => {
               return (
                 <Fragment key={index}>
                   <input id={`tool-${choice}`} className="checkbox-tools" type="radio" name={'answer'} onChange={handleChange} value={choice} checked={formData.answer === choice} />
@@ -38,27 +58,7 @@ function Question({ question, questionNum }) {
                 </Fragment>
               );
             })}
-            {/* <input id="tool-1" className="checkbox-tools" type="radio" name="answer" onChange={handleChange} value={'1'} checked={formData.answer === '1'} />
-            <label className="for-checkbox-tools" htmlFor="tool-1">
-              <i className="uil uil-line-alt"></i>
-              line
-            </label>
 
-            <input id="tool-2" className="checkbox-tools" type="radio" name="answer" onChange={handleChange} value={'2'} checked={formData.answer === '2'} />
-            <label htmlFor="tool-2" className="for-checkbox-tools">
-              <i className="uil uil-vector-square"></i>
-              square
-            </label>
-            <input id="tool-3" className="checkbox-tools" type="radio" name="answer" onChange={handleChange} value={'3'} checked={formData.answer === '3'} />
-            <label htmlFor="tool-3" className="for-checkbox-tools">
-              <i className="uil uil-ruler"></i>
-              ruler
-            </label>
-            <input id="tool-4" className="checkbox-tools" type="radio" name="answer" onChange={handleChange} value={'4'} checked={formData.answer === '4'} />
-            <label htmlFor="tool-4" className="for-checkbox-tools">
-              <i className="uil uil-crop-alt"></i>
-              crop
-            </label> */}
             <hr />
           </div>
         </form>

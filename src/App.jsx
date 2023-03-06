@@ -1,7 +1,5 @@
 import './App.css';
 import { useState } from 'react';
-// import StartQuiz from './StartQuiz';
-// import QuizPage from './QuizPage';
 
 // Improved Components
 import StartQuiz from './pages/start-quiz/StartQuiz';
@@ -11,13 +9,14 @@ function App() {
   const [quizHasStarted, setQuizHasStarted] = useState(false);
   const [userConfigObj, setUserConfigObj] = useState({});
 
+  // When the user click on start quiz, get the userConfig from StartQuizz Component And pass it to QuizPage Component
   const onStartQUizButtonClicked = (userConfig) => {
-    console.log(userConfig);
     setUserConfigObj(userConfig);
   };
 
   return (
     <div className="App">
+      {/* If Quizz is not started then show startQuizz Component, and if the quizz is started show QuizPage Component instead */}
       {!quizHasStarted && <StartQuiz onStartQUizButtonClicked={onStartQUizButtonClicked} setQuizHasStarted={setQuizHasStarted} />}
       {quizHasStarted && <QuizPage userConfigObj={userConfigObj} />}
     </div>

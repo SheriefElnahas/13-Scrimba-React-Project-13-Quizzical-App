@@ -1,12 +1,13 @@
-import styles from './StartQuiz.module.css';
-
 import { useState } from 'react';
+
+// Stlyes
+import styles from './StartQuiz.module.css';
 
 export default function StartQuiz({ onStartQUizButtonClicked, setQuizHasStarted }) {
   const [userChoices, setUserChoices] = useState({ category: '', amount: '', type: '', difficulty: '' });
 
-  function handleChange(event) {
-    const { name, value, type, checked } = event.target;
+  function handleChange(e) {
+    const { name, value, type, checked } = e.target;
     setUserChoices((prevUserChoices) => {
       return {
         ...prevUserChoices,
@@ -17,7 +18,10 @@ export default function StartQuiz({ onStartQUizButtonClicked, setQuizHasStarted 
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Pass User Choices Back Up To App Parent
     onStartQUizButtonClicked(userChoices);
+
+    // Change Quiz Started To True to hide StartQuiz Component & Show QuizPage Component Instead
     setQuizHasStarted(true);
   };
 
@@ -46,7 +50,6 @@ export default function StartQuiz({ onStartQUizButtonClicked, setQuizHasStarted 
           </p>
           <p>
             <label>
-              {' '}
               Write the number of questions
               <input type="number" placeholder="Questions number between 1 : 50" value={userChoices.amount} onChange={handleChange} name="amount" />
             </label>
