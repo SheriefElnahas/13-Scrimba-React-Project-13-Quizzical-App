@@ -1,40 +1,42 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 // Styles
 import styles from './QuizPage.module.css';
 
 // Components
 import Question from '../../components/Question';
+import useAxios from '../../hooks/useAxios';
 
 export default function QuizPage({ userConfigObj }) {
-  const [questions, setQuestions] = useState([]);
-  const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState(null);
+  const { questions, isPending, error } = useAxios(userConfigObj);
 
-  useEffect(() => {
-    // 1- Extract User Config That you got from inputs
-    const { category, amount, type, difficulty } = userConfigObj;
+  // const [questions, setQuestions] = useState([]);
+  // const [isPending, setIsPending] = useState(false);
+  // const [error, setError] = useState(null);
 
-    // 2-Build The Url Using The User Config Inputs
-    const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`;
+  // useEffect(() => {
+  //   // 1- Extract User Config That you got from inputs
+  //   const { category, amount, type, difficulty } = userConfigObj;
 
-    const fetchQuestions = async () => {
-      setIsPending(true);
-      try {
-        const response = await axios.get(url);
-        setIsPending(false);
-        setQuestions(response.data.results);
-        setError(null);
-      } catch (err) {
-        console.log(err);
-        setIsPending(false);
-        setError('Coult Not Fetch Data');
-      }
-    };
+  //   // 2-Build The Url Using The User Config Inputs
+  //   const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`;
 
-    fetchQuestions();
-  }, []);
+  //   const fetchQuestions = async () => {
+  //     setIsPending(true);
+  //     try {
+  //       const response = await axios.get(url);
+  //       setIsPending(false);
+  //       setQuestions(response.data.results);
+  //       setError(null);
+  //     } catch (err) {
+  //       console.log(err);
+  //       setIsPending(false);
+  //       setError('Coult Not Fetch Data');
+  //     }
+  //   };
+
+  //   fetchQuestions();
+  // }, []);
 
   return (
     <section className={styles.QuizPage}>
