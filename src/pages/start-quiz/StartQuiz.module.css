@@ -65,22 +65,3 @@
   font-family: inherit;
   color: #525252;
 }
-.StartQuiz button {
-  padding: 0.8rem 2.5rem;
-  background: #000;
-  color: #fff;
-  font-size: 1rem;
-  font-family: 'Golos Text', sans-serif;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-left: 35%;
-  margin-top: 5px;
-  font-weight: bold;
-  transition: all 0.2s linear;
-}
-
-.StartQuiz button:hover {
-  background: teal;
-  color: #fff;
-}

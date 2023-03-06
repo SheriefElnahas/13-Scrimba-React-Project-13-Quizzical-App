@@ -6,46 +6,30 @@ import styles from './QuizPage.module.css';
 // Components
 import Question from '../../components/Question';
 import useAxios from '../../hooks/useAxios';
+import useShuffle from '../../hooks/useShuffle';
 
 export default function QuizPage({ userConfigObj }) {
   const { questions, isPending, error } = useAxios(userConfigObj);
 
-  // const [questions, setQuestions] = useState([]);
-  // const [isPending, setIsPending] = useState(false);
-  // const [error, setError] = useState(null);
-
-  // useEffect(() => {
-  //   // 1- Extract User Config That you got from inputs
-  //   const { category, amount, type, difficulty } = userConfigObj;
-
-  //   // 2-Build The Url Using The User Config Inputs
-  //   const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`;
-
-  //   const fetchQuestions = async () => {
-  //     setIsPending(true);
-  //     try {
-  //       const response = await axios.get(url);
-  //       setIsPending(false);
-  //       setQuestions(response.data.results);
-  //       setError(null);
-  //     } catch (err) {
-  //       console.log(err);
-  //       setIsPending(false);
-  //       setError('Coult Not Fetch Data');
-  //     }
-  //   };
-
-  //   fetchQuestions();
-  // }, []);
+  const onCheckAnswerButtonClicked = (answers) => {
+    console.log(answers);
+  };
 
   return (
     <section className={styles.QuizPage}>
+      {isPending && <p>...Loading</p>}
       {questions &&
         questions.map(({ correct_answer, incorrect_answers, question }, index) => {
+          // Build the choices array out from incorrect answer arr and contach that to correct answer
           const choices = [...incorrect_answers, correct_answer];
-          console.log(correct_answer);
-          return <Question key={question} choices={choices} questionHeading={question} questionNum={index + 1} correctAnswer={correct_answer} />;
+
+          // Shuffle The Array Of Choices to change the position of the correct answer from 3th index to a random index
+          const shuffledArr = useShuffle(choices);
+          // console.log(correct_answer);
+          return <Question onCheckAnswerButtonClicked={onCheckAnswerButtonClicked} key={question} choices={shuffledArr} questionHeading={question} questionNum={index + 1} correctAnswer={correct_answer} />;
         })}
+      <button className="btn">Check Answers</button>
+      {error && <p>{error}</p>}
     </section>
   );
 }

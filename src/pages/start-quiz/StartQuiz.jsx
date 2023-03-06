@@ -77,7 +77,7 @@ export default function StartQuiz({ onStartQUizButtonClicked, setQuizHasStarted 
           </p>
         </div>
         <p>
-          <button>Start Quizz</button>
+          <button className="btn">Start Quizz</button>
         </p>
       </form>
     </section>
