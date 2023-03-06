@@ -21,17 +21,6 @@ function Question({ choices, questionNum, questionHeading, correctAnswer, reciev
     recieveResults(formData.answer, questionNum, correctAnswer);
   }, [formData.answer]);
 
-  useEffect(() => {
-    if (formData.answer === correctAnswer) {
-      console.log('yes!');
-      setInputBackgroundImage('right-answer');
-    }
-    // else {
-    //   console.log('wrong answer');
-    //   setInputBackgroundImage('wrong-answer');
-    // }
-  }, [quizFinished]);
-
   return (
     <article className="Question">
       <h3>
@@ -45,7 +34,12 @@ function Question({ choices, questionNum, questionHeading, correctAnswer, reciev
 
               return (
                 <Fragment key={index}>
-                  <input id={`tool-${choice}`} className="checkbox-tools" type="radio" name={'answer'} onChange={handleChange} value={choice} checked={formData.answer === choice} />
+                  <input id={`tool-${choice}`} className="checkbox-tools" type="radio" name={'answer'} disabled={quizFinished} onChange={handleChange} value={choice} checked={formData.answer === choice} />
+
+                  <label className={`for-checkbox-tools ${choice === correctAnswer && quizFinished ? 'right-answer' : choice === formData.answer && quizFinished && 'wrong-answer'}`} htmlFor={`tool-${choice}`}>
+                    <i className="uil uil-line-alt"></i>
+                    {choice}
+                  </label>
                   {/* <label className={`for-checkbox-tools ${choice === correctAnswer && quizFinished && inputBackgroundImage}`} htmlFor={`tool-${choice}`}>
                     <i className="uil uil-line-alt"></i>
                     {choice}
@@ -55,11 +49,6 @@ function Question({ choices, questionNum, questionHeading, correctAnswer, reciev
                     <i className="uil uil-line-alt"></i>
                     {choice}
                   </label> */}
-
-                  <label className={`for-checkbox-tools ${choice === correctAnswer && quizFinished ? 'right-answer' : choice === formData.answer && quizFinished && 'wrong-answer'}`} htmlFor={`tool-${choice}`}>
-                    <i className="uil uil-line-alt"></i>
-                    {choice}
-                  </label>
                 </Fragment>
               );
             })}
