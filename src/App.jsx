@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       {/* If Quizz is not started then show startQuizz Component, and if the quizz is started show QuizPage Component instead */}
       {!quizHasStarted && <StartQuiz onStartQUizButtonClicked={onStartQUizButtonClicked} setQuizHasStarted={setQuizHasStarted} />}
-      {quizHasStarted && <QuizPage userConfigObj={userConfigObj} />}
+      {quizHasStarted && <QuizPage userConfigObj={userConfigObj} setQuizHasStarted={setQuizHasStarted} />}
     </div>
   );
 }

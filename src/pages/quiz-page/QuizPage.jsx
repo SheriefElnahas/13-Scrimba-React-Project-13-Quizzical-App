@@ -8,7 +8,7 @@ import Question from '../../components/Question';
 import useAxios from '../../hooks/useAxios';
 import useShuffle from '../../hooks/useShuffle';
 
-export default function QuizPage({ userConfigObj }) {
+export default function QuizPage({ userConfigObj, setQuizHasStarted }) {
   const { questions, isPending, error } = useAxios(userConfigObj);
 
   const [score, setScore] = useState(0);
@@ -25,6 +25,7 @@ export default function QuizPage({ userConfigObj }) {
     setCheckAnswers(true);
     setQuizFinished(true);
   };
+  console.log(styles);
 
   return (
     <section className={styles.QuizPage}>
@@ -40,9 +41,15 @@ export default function QuizPage({ userConfigObj }) {
 
           return <Question recieveResults={recieveResults} key={question} choices={choices} questionHeading={question} questionNum={index + 1} correctAnswer={correct_answer} quizFinished={quizFinished} />;
         })}
-      <button onClick={onCheckAnswerButtonClicked} className="btn">
-        Check Answers
-      </button>
+
+      <div className={styles.buttons}>
+        <button onClick={onCheckAnswerButtonClicked} className="btn">
+          Check Answers
+        </button>
+        <button onClick={() => setQuizHasStarted(false)} className="btn">
+          Return To Start Page
+        </button>
+      </div>
       {checkAnswers && <p>{`You scored ${score}/${questions.length} correct answers`}</p>}
       {error && <p>{error}</p>}
     </section>
