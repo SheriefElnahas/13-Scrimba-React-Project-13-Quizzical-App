@@ -1,8 +1,8 @@
 import './Question.css';
 
-import { useState } from 'react';
+import { Fragment, React, useState } from 'react';
 
-function Question() {
+function Question({ question }) {
   const [formData, setFormData] = useState({ answer: '' });
 
   function handleChange(event) {
@@ -21,11 +21,22 @@ function Question() {
 
   return (
     <article className="Question">
-      <h3>1. Best Anime Character?</h3>
+      <h3>1. {question.question}</h3>
       <div className="answers">
         <form onSubmit={handleSubmit}>
           <div className="col-12 pb-5">
-            <input id="tool-1" className="checkbox-tools" type="radio" name="answer" onChange={handleChange} value={'1'} checked={formData.answer === '1'} />
+            {question.incorrect_answers.map((choice, index) => {
+              return (
+                <Fragment key={index}>
+                  <input id={`tool-${choice}`} className="checkbox-tools" type="radio" name={'answer'} onChange={handleChange} value={choice} checked={formData.answer === choice} />
+                  <label className="for-checkbox-tools" htmlFor={`tool-${choice}`}>
+                    <i className="uil uil-line-alt"></i>
+                    {choice}
+                  </label>
+                </Fragment>
+              );
+            })}
+            {/* <input id="tool-1" className="checkbox-tools" type="radio" name="answer" onChange={handleChange} value={'1'} checked={formData.answer === '1'} />
             <label className="for-checkbox-tools" htmlFor="tool-1">
               <i className="uil uil-line-alt"></i>
               line
@@ -45,7 +56,7 @@ function Question() {
             <label htmlFor="tool-4" className="for-checkbox-tools">
               <i className="uil uil-crop-alt"></i>
               crop
-            </label>
+            </label> */}
           </div>
         </form>
       </div>

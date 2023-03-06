@@ -2,7 +2,7 @@ import styles from './StartQuiz.module.css';
 
 import { useState } from 'react';
 
-export default function StartQuiz({ startQuizFunc }) {
+export default function StartQuiz({ onStartQUizButtonClicked, setQuizHasStarted }) {
   const [userChoices, setUserChoices] = useState({ category: '', amount: '', type: '', difficulty: '' });
 
   function handleChange(event) {
@@ -17,7 +17,8 @@ export default function StartQuiz({ startQuizFunc }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    startQuizFunc(userChoices);
+    onStartQUizButtonClicked(userChoices);
+    setQuizHasStarted(true);
   };
 
   return (
@@ -56,8 +57,8 @@ export default function StartQuiz({ startQuizFunc }) {
               <option value="" disabled defaultValue={''}>
                 -- Choose A Type --
               </option>
-              <option value="attack-on-titan">Multiple Choice</option>
-              <option value="vinland-saga">True / False</option>
+              <option value="multiple">Multiple Choice</option>
+              <option value="boolean">True / False</option>
             </select>
           </p>
           <p>
@@ -66,9 +67,9 @@ export default function StartQuiz({ startQuizFunc }) {
               <option value="" disabled defaultValue={''}>
                 -- Choose A Level --
               </option>
-              <option value="attack-on-titan">Easy</option>
-              <option value="vinland-saga">Medium</option>
-              <option value="demon-slayer">Hard</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
             </select>
           </p>
         </div>

@@ -8,19 +8,18 @@ import StartQuiz from './pages/start-quiz/StartQuiz';
 import QuizPage from './pages/quiz-page/QuizPage';
 
 function App() {
-  const [started, setstarted] = useState(true); // Change this to false later
+  const [quizHasStarted, setQuizHasStarted] = useState(false);
+  const [userConfigObj, setUserConfigObj] = useState({});
 
-  const startQuizFunc = (userChoices) => {
-    console.log(userChoices);
+  const onStartQUizButtonClicked = (userConfig) => {
+    console.log(userConfig);
+    setUserConfigObj(userConfig);
   };
-  function start() {
-    setstarted(true);
-  }
 
   return (
     <div className="App">
-      {!started && <StartQuiz startQuizFunc={startQuizFunc} />}
-      {started && <QuizPage />}
+      {!quizHasStarted && <StartQuiz onStartQUizButtonClicked={onStartQUizButtonClicked} setQuizHasStarted={setQuizHasStarted} />}
+      {quizHasStarted && <QuizPage userConfigObj={userConfigObj} />}
     </div>
   );
 }
