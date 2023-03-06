@@ -8,11 +8,11 @@ import axios from 'axios';
 export default function QuizPage({ userConfigObj }) {
   const [questions, setQuestions] = useState([]);
 
+  const { category, amount, type, difficulty } = userConfigObj;
+
   useEffect(() => {
-    const { category, amount, type, difficulty } = userConfigObj;
     const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`;
-    // console.log(url);
-    // https://opentdb.com/api.php?amount=5&category=23&difficulty=attack-on-titan&type=attack-on-titan
+
     axios.get(url).then((response) => {
       setQuestions(response.data.results);
     });
@@ -21,10 +21,10 @@ export default function QuizPage({ userConfigObj }) {
   console.log(questions);
 
   return (
-    <section className="QuizPage">
+    <section className={styles.QuizPage}>
       {questions &&
-        questions.map((question) => {
-          return <Question key={question.correct_answer} question={question} />;
+        questions.map((question, index) => {
+          return <Question key={question.correct_answer} question={question} questionNum={index + 1} />;
         })}
       {/* <Question />
       <Question />

@@ -1,8 +1,8 @@
 import './Question.css';
 
-import { Fragment, React, useState } from 'react';
+import { Fragment, React, useEffect, useState } from 'react';
 
-function Question({ question }) {
+function Question({ question, questionNum }) {
   const [formData, setFormData] = useState({ answer: '' });
 
   function handleChange(event) {
@@ -21,7 +21,9 @@ function Question({ question }) {
 
   return (
     <article className="Question">
-      <h3>1. {question.question}</h3>
+      <h3>
+        {questionNum}. {question.question}
+      </h3>
       <div className="answers">
         <form onSubmit={handleSubmit}>
           <div className="col-12 pb-5">
@@ -57,6 +59,7 @@ function Question({ question }) {
               <i className="uil uil-crop-alt"></i>
               crop
             </label> */}
+            <hr />
           </div>
         </form>
       </div>
