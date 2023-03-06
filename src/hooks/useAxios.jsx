@@ -11,7 +11,8 @@ export default function useAxios(userConfigObj) {
     const { category, amount, type, difficulty } = userConfigObj;
 
     // 2-Build The Url Using The User Config Inputs
-    const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`;
+    // const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`;
+    const url = `https://opentdb.com/api.php?amount=3&category=23&difficulty=easy&type=multiple`;
 
     const fetchQuestions = async () => {
       setIsPending(true);

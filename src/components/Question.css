@@ -152,3 +152,10 @@ mark {
   background-image: linear-gradient(298deg, var(--red), var(--yellow));
   z-index: -1;
 }
+
+.right-answer {
+  background-image: linear-gradient(298deg, #15deba, #40c7c0);
+}
+.wrong-answer {
+  background-image: linear-gradient(298deg, #e02b73, #ba254d);
+}
