@@ -12,7 +12,6 @@ export default function QuizPage({ userConfigObj, setQuizHasStarted }) {
 
   const [score, setScore] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
-  const [playAgain, setPlayAgain] = useState(false);
 
   const checkUserAnswer = (userAnswer, correctAnswer) => {
     // Increase the score by one if the user answer is equal to the correct answer
@@ -37,6 +36,8 @@ export default function QuizPage({ userConfigObj, setQuizHasStarted }) {
         <Fragment>
           {modifiedQuestionsArr &&
             modifiedQuestionsArr.map(({ correct_answer, shuffledChoicesArr, question }, index) => {
+              //
+
               return <Question checkUserAnswer={checkUserAnswer} key={question} choices={shuffledChoicesArr} questionHeading={question} questionNum={index + 1} correctAnswer={correct_answer} quizFinished={quizFinished} />;
             })}
 

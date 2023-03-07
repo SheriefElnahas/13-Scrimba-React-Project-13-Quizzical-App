@@ -1,6 +1,6 @@
 import './Question.css';
 
-import { Fragment, React, useEffect, useState } from 'react';
+import { Fragment, React, useEffect, useState, useId } from 'react';
 
 function Question({ choices, questionNum, questionHeading, correctAnswer, checkUserAnswer, quizFinished }) {
   const [formData, setFormData] = useState({ answer: '' });
@@ -23,15 +23,19 @@ function Question({ choices, questionNum, questionHeading, correctAnswer, checkU
   return (
     <article className="Question">
       <h3>
+        {JSON.encode}
         {questionNum}. {questionHeading}
       </h3>
 
       <form>
         {choices.map((choice, index) => {
+          // Generate A unique id for each input and label
+          const uniqueId = useId();
+
           return (
             <Fragment key={index}>
-              <input id={`tool-${choice}`} className="checkbox-tools" type="radio" name={'answer'} disabled={quizFinished} onChange={handleChange} value={choice} checked={formData.answer === choice} />
-              <label className={`for-checkbox-tools ${choice === correctAnswer && quizFinished ? 'right-answer' : choice === formData.answer && quizFinished && 'wrong-answer'}`} htmlFor={`tool-${choice}`}>
+              <input id={`tool-${uniqueId}`} className="checkbox-tools" type="radio" name={'answer'} disabled={quizFinished} onChange={handleChange} value={choice} checked={formData.answer === choice} />
+              <label className={`for-checkbox-tools ${choice === correctAnswer && quizFinished ? 'right-answer' : choice === formData.answer && quizFinished && 'wrong-answer'}`} htmlFor={`tool-${uniqueId}`}>
                 <i className="uil uil-line-alt"></i>
                 {choice}
               </label>
