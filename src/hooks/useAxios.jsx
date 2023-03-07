@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import useShuffle from './useShuffle';
+
 export default function useAxios(userConfigObj) {
   const [questions, setQuestions] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
+  const [modifiedQuestionsArr, setModifiedQuestionsArr] = useState([]);
 
   useEffect(() => {
     // 1- Extract User Config That you got from inputs
@@ -20,6 +23,7 @@ export default function useAxios(userConfigObj) {
         const response = await axios.get(url);
         setIsPending(false);
         setQuestions(response.data.results);
+
         setError(null);
       } catch (err) {
         console.log(err);
@@ -31,5 +35,20 @@ export default function useAxios(userConfigObj) {
     fetchQuestions();
   }, []);
 
-  return { questions, isPending, error };
+  useEffect(() => {
+    if (questions.length !== 0) {
+      const result = questions.map((question, index) => {
+        // Build the choices array out from incorrect answer arr and contach that to correct answer
+        const mergedChoicesArr = [...question.incorrect_answers, question.correct_answer];
+
+        // Shuffle The Array Of mergedChoicesArr to change the position of the correct answer from 3th index to a random index
+        const shuffledChoicesArr = useShuffle(mergedChoicesArr);
+        return { ...question, shuffledChoicesArr };
+      });
+
+      setModifiedQuestionsArr(result);
+    }
+  }, [questions]);
+
+  return { modifiedQuestionsArr, isPending, error };
 }

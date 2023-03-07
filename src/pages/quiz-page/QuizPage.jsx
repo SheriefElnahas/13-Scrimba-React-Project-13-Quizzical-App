@@ -9,10 +9,10 @@ import useAxios from '../../hooks/useAxios';
 import useShuffle from '../../hooks/useShuffle';
 
 export default function QuizPage({ userConfigObj, setQuizHasStarted }) {
-  const { questions, isPending, error } = useAxios(userConfigObj);
+  const { modifiedQuestionsArr, isPending, error } = useAxios(userConfigObj);
 
   const [score, setScore] = useState(0);
-  const [checkAnswers, setCheckAnswers] = useState(false);
+
   const [quizFinished, setQuizFinished] = useState(false);
 
   const recieveResults = (userAnswer, questionNum, correctAnswer) => {
@@ -24,28 +24,26 @@ export default function QuizPage({ userConfigObj, setQuizHasStarted }) {
   const onCheckAnswerButtonClicked = () => {
     setQuizFinished(true);
   };
-  console.log(styles);
 
   return (
     <section className={styles.QuizPage}>
       {isPending && <p>...Loading</p>}
       {!isPending && (
         <Fragment>
-          {questions &&
-            questions.map(({ correct_answer, incorrect_answers, question }, index) => {
+          {modifiedQuestionsArr &&
+            modifiedQuestionsArr.map(({ correct_answer, shuffledChoicesArr, question }, index) => {
               // Build the choices array out from incorrect answer arr and contach that to correct answer
-              const choices = [...incorrect_answers, correct_answer];
 
               // Shuffle The Array Of Choices to change the position of the correct answer from 3th index to a random index
               // const shuffledArr = useShuffle(choices);
 
-              return <Question recieveResults={recieveResults} key={question} choices={choices} questionHeading={question} questionNum={index + 1} correctAnswer={correct_answer} quizFinished={quizFinished} />;
+              return <Question recieveResults={recieveResults} key={question} choices={shuffledChoicesArr} questionHeading={question} questionNum={index + 1} correctAnswer={correct_answer} quizFinished={quizFinished} />;
             })}
 
           <div className={styles.buttons}>
             {
               <p className={`${quizFinished ? styles.show : styles.hide}`}>
-                {`You scored ${score}/${questions.length}  correct answers`} {score < questions.length / 2 ? '🤯' : '🥳'}
+                {`You scored ${score}/${modifiedQuestionsArr.length}  correct answers`} {score < modifiedQuestionsArr.length / 2 ? '🤯' : '🥳'}
               </p>
             }
             {!quizFinished && (

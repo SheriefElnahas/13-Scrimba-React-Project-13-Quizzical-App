@@ -4,7 +4,6 @@ import { Fragment, React, useEffect, useState } from 'react';
 
 function Question({ choices, questionNum, questionHeading, correctAnswer, recieveResults, quizFinished }) {
   const [formData, setFormData] = useState({ answer: '' });
-  const [inputBackgroundImage, setInputBackgroundImage] = useState('');
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
@@ -34,16 +33,15 @@ function Question({ choices, questionNum, questionHeading, correctAnswer, reciev
           return (
             <Fragment key={index}>
               <input id={`tool-${choice}`} className="checkbox-tools" type="radio" name={'answer'} disabled={quizFinished} onChange={handleChange} value={choice} checked={formData.answer === choice} />
-
               <label className={`for-checkbox-tools ${choice === correctAnswer && quizFinished ? 'right-answer' : choice === formData.answer && quizFinished && 'wrong-answer'}`} htmlFor={`tool-${choice}`}>
                 <i className="uil uil-line-alt"></i>
                 {choice}
               </label>
+
               {/* <label className={`for-checkbox-tools ${choice === correctAnswer && quizFinished && inputBackgroundImage}`} htmlFor={`tool-${choice}`}>
                     <i className="uil uil-line-alt"></i>
                     {choice}
                   </label> */}
-
               {/* <label className={`for-checkbox-tools ${choice === correctAnswer && quizFinished && 'right-answer'}`} htmlFor={`tool-${choice}`}>
                     <i className="uil uil-line-alt"></i>
                     {choice}

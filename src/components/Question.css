@@ -123,7 +123,7 @@ mark {
   margin-bottom: 10px;
   text-align: center;
   border-radius: 4px;
-  overflow: hidden;
+  /* overflow: hidden; */
   cursor: pointer;
 
   color: var(--white);

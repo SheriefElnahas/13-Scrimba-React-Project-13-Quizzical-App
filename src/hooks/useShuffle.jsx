@@ -1,5 +1,5 @@
-export default function useShuffle(array) {
-  let currentIndex = array.length,
+export default function useShuffle(questionsArr) {
+  let currentIndex = questionsArr.length,
     randomIndex;
   // While there remain elements to shuffle.
   while (currentIndex != 0) {
@@ -8,8 +8,8 @@ export default function useShuffle(array) {
     currentIndex--;
 
     // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    [questionsArr[currentIndex], questionsArr[randomIndex]] = [questionsArr[randomIndex], questionsArr[currentIndex]];
   }
 
-  return array;
+  return questionsArr;
 }
