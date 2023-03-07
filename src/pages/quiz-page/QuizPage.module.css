@@ -20,10 +20,32 @@
 }
 
 .QuizPage button {
-  margin-top: 2rem;
-  margin-left: 10px;
+  margin: 5px 0 10px 10px;
 }
 
 .QuizPage p {
   text-align: center;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
+}
+
+.btn-play-again {
+  background: linear-gradient(298deg, #21bb9f, #57c5bf);
+}
+
+.btn-play-again:hover {
+  background: linear-gradient(298deg, #38b69f, #289c92);
+}
+
+.btn-start-page {
+  background: linear-gradient(298deg, #e02b73, #ba254d);
+}
+.btn-start-page:hover {
+  background: linear-gradient(298deg, #cd2a6b, #a41e42);
 }
