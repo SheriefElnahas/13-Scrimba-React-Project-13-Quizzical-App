@@ -65,3 +65,14 @@
   font-family: inherit;
   color: #525252;
 }
+
+.alert-text {
+  text-align: center;
+  font-size: 0.9rem;
+  background: linear-gradient(298deg, #e02b73, #ba254d);
+  color: #fff;
+  width: 70%;
+  margin: 1rem auto;
+  line-height: 2;
+  border-radius: 20px;
+}

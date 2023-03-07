@@ -2,7 +2,7 @@ import './Question.css';
 
 import { Fragment, React, useEffect, useState } from 'react';
 
-function Question({ choices, questionNum, questionHeading, correctAnswer, recieveResults, quizFinished }) {
+function Question({ choices, questionNum, questionHeading, correctAnswer, checkUserAnswer, quizFinished }) {
   const [formData, setFormData] = useState({ answer: '' });
 
   function handleChange(event) {
@@ -16,8 +16,8 @@ function Question({ choices, questionNum, questionHeading, correctAnswer, reciev
   }
 
   useEffect(() => {
-    // console.log(formData.answer);
-    recieveResults(formData.answer, questionNum, correctAnswer);
+    //Only when we get an answer, pass the user answer and the correct answer to compare them
+    checkUserAnswer(formData.answer, correctAnswer);
   }, [formData.answer]);
 
   return (
@@ -28,8 +28,6 @@ function Question({ choices, questionNum, questionHeading, correctAnswer, reciev
 
       <form>
         {choices.map((choice, index) => {
-          // console.log(`choice is ${choice} - correct answer is ${correctAnswer}`);
-
           return (
             <Fragment key={index}>
               <input id={`tool-${choice}`} className="checkbox-tools" type="radio" name={'answer'} disabled={quizFinished} onChange={handleChange} value={choice} checked={formData.answer === choice} />
@@ -37,15 +35,6 @@ function Question({ choices, questionNum, questionHeading, correctAnswer, reciev
                 <i className="uil uil-line-alt"></i>
                 {choice}
               </label>
-
-              {/* <label className={`for-checkbox-tools ${choice === correctAnswer && quizFinished && inputBackgroundImage}`} htmlFor={`tool-${choice}`}>
-                    <i className="uil uil-line-alt"></i>
-                    {choice}
-                  </label> */}
-              {/* <label className={`for-checkbox-tools ${choice === correctAnswer && quizFinished && 'right-answer'}`} htmlFor={`tool-${choice}`}>
-                    <i className="uil uil-line-alt"></i>
-                    {choice}
-                  </label> */}
             </Fragment>
           );
         })}

@@ -6,24 +6,29 @@ import styles from './QuizPage.module.css';
 // Components
 import Question from '../../components/Question';
 import useAxios from '../../hooks/useAxios';
-import useShuffle from '../../hooks/useShuffle';
 
 export default function QuizPage({ userConfigObj, setQuizHasStarted }) {
-  const { modifiedQuestionsArr, isPending, error } = useAxios(userConfigObj);
+  let { modifiedQuestionsArr, isPending, error } = useAxios(userConfigObj);
 
   const [score, setScore] = useState(0);
-
   const [quizFinished, setQuizFinished] = useState(false);
+  const [playAgain, setPlayAgain] = useState(false);
 
-  const recieveResults = (userAnswer, questionNum, correctAnswer) => {
-    // console.log(`Question Num : ${questionNum} - User Answer: ${userAnswer} - Correct Answer ${correctAnswer}`);
+  const checkUserAnswer = (userAnswer, correctAnswer) => {
+    // Increase the score by one if the user answer is equal to the correct answer
     if (correctAnswer === userAnswer) {
       setScore((score) => (score += 1));
     }
   };
-  const onCheckAnswerButtonClicked = () => {
+
+  // When the user click on check answer buttons change quiz finish to true
+  const onCheckAnswersButtonClicked = () => {
     setQuizFinished(true);
   };
+
+  // const onPlayAgainButtonClicked = () => {
+  //   console.log('make another request');
+  // };
 
   return (
     <section className={styles.QuizPage}>
@@ -32,12 +37,7 @@ export default function QuizPage({ userConfigObj, setQuizHasStarted }) {
         <Fragment>
           {modifiedQuestionsArr &&
             modifiedQuestionsArr.map(({ correct_answer, shuffledChoicesArr, question }, index) => {
-              // Build the choices array out from incorrect answer arr and contach that to correct answer
-
-              // Shuffle The Array Of Choices to change the position of the correct answer from 3th index to a random index
-              // const shuffledArr = useShuffle(choices);
-
-              return <Question recieveResults={recieveResults} key={question} choices={shuffledChoicesArr} questionHeading={question} questionNum={index + 1} correctAnswer={correct_answer} quizFinished={quizFinished} />;
+              return <Question checkUserAnswer={checkUserAnswer} key={question} choices={shuffledChoicesArr} questionHeading={question} questionNum={index + 1} correctAnswer={correct_answer} quizFinished={quizFinished} />;
             })}
 
           <div className={styles.buttons}>
@@ -46,13 +46,16 @@ export default function QuizPage({ userConfigObj, setQuizHasStarted }) {
                 {`You scored ${score}/${modifiedQuestionsArr.length}  correct answers`} {score < modifiedQuestionsArr.length / 2 ? '🤯' : '🥳'}
               </p>
             }
-            {!quizFinished && (
-              <button onClick={onCheckAnswerButtonClicked} className="btn">
-                Check Answers
-              </button>
-            )}
 
-            {quizFinished && <button className={`btn ${styles['btn-play-again']} }`}>Play Again!</button>}
+            <button onClick={onCheckAnswersButtonClicked} className="btn">
+              Check Answers
+            </button>
+
+            {/* {quizFinished && (
+              <button onClick={onPlayAgainButtonClicked} className={`btn ${styles['btn-play-again']} }`}>
+                Play Again!
+              </button>
+            )} */}
             <br />
             <button onClick={() => setQuizHasStarted(false)} className={`btn ${styles['btn-start-page']}`}>
               Return To Start Page

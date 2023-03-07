@@ -5,6 +5,7 @@ import styles from './StartQuiz.module.css';
 
 export default function StartQuiz({ onStartQUizButtonClicked, setQuizHasStarted }) {
   const [userChoices, setUserChoices] = useState({ category: '', amount: '', type: '', difficulty: '' });
+  const [userChoicesCondition, setUserChoicesCondition] = useState(false);
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
@@ -21,8 +22,19 @@ export default function StartQuiz({ onStartQUizButtonClicked, setQuizHasStarted 
     // Pass User Choices Back Up To App Parent
     onStartQUizButtonClicked(userChoices);
 
-    // Change Quiz Started To True to hide StartQuiz Component & Show QuizPage Component Instead
-    setQuizHasStarted(true);
+    const { category, amount, type, difficulty } = userChoices;
+    // setUserChoicesCondition(((category.length === amount.length) === type.length) === difficulty.length) !== 0;
+
+    const condition = category.length === 0 || amount.length === 0 || type.length === 0 || difficulty.length === 0;
+
+    // Only Start the quiz if all the inputs field are used.
+    if (condition) {
+      setUserChoicesCondition(true);
+    } else {
+      // Change Quiz Started To True to hide StartQuiz Component & Show QuizPage Component Instead
+      setQuizHasStarted(true);
+      setUserChoicesCondition(false);
+    }
   };
 
   return (
@@ -51,7 +63,7 @@ export default function StartQuiz({ onStartQUizButtonClicked, setQuizHasStarted 
           <p>
             <label>
               Write the number of questions
-              <input type="number" placeholder="Questions number between 1 : 50" value={userChoices.amount} onChange={handleChange} name="amount" />
+              <input type="number" min={1} max={50} placeholder="Questions number between 1 : 50" value={userChoices.amount} onChange={handleChange} name="amount" />
             </label>
           </p>
           <p>
@@ -76,6 +88,7 @@ export default function StartQuiz({ onStartQUizButtonClicked, setQuizHasStarted 
             </select>
           </p>
         </div>
+        {userChoicesCondition && <p className={styles['alert-text']}>Sorry, there are missing or invalid inputs</p>}
         <p>
           <button className="btn">Start Quizz</button>
         </p>
