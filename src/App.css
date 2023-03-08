@@ -71,3 +71,11 @@ body {
   background: teal;
   color: #fff;
 }
+
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
+}

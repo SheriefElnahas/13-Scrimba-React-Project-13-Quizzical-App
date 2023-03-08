@@ -88,7 +88,7 @@ export default function StartQuiz({ onStartQUizButtonClicked, setQuizHasStarted 
             </select>
           </p>
         </div>
-        {userChoicesCondition && <p className={styles['alert-text']}>Sorry, there are missing or invalid inputs</p>}
+        {<p className={`${styles['alert-text']} ${userChoicesCondition ? 'show' : 'hide'}`}>Sorry, there are missing or invalid inputs</p>}
         <p>
           <button className="btn">Start Quizz</button>
         </p>

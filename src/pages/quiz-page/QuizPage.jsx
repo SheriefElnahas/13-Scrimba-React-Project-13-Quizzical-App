@@ -43,7 +43,7 @@ export default function QuizPage({ userConfigObj, setQuizHasStarted }) {
 
           <div className={styles.buttons}>
             {
-              <p className={`${quizFinished ? styles.show : styles.hide}`}>
+              <p className={`${quizFinished ? 'show' : 'hide'}`}>
                 {`You scored ${score}/${modifiedQuestionsArr.length}  correct answers`} {score < modifiedQuestionsArr.length / 2 ? '🤯' : '🥳'}
               </p>
             }
